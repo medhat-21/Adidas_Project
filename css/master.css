@@ -1,0 +1,292 @@
+/* ===== BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+/* ===== BODY STYLES ===== */
+body {
+    background: linear-gradient(#111, #222);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* لمنع ظهور شريط التمرير عند الحاجة */
+}
+::selection{   
+    background: #ffffffa6;  /* for text marker backgroun or text color */
+    color: #111;
+}
+
+/* تأثير الدائرة الخضراء مع انتقال سلس */
+body::after {
+    content: '';
+    width: 100%;
+    height: 100%;    
+    position: absolute;
+    z-index: -1;
+    background-color: #C0FF00;
+    clip-path: circle(35% at right 65%);
+    transition: all 0.5s ease; /* إضافة انتقال سلس */
+}
+
+/* ===== CONTAINER STYLES ===== */
+.container {
+    width: 80%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    backdrop-filter: blur(5px); /* تأثير ضبابي خفيف */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* إضافة ظل */
+    transition: all 0.3s ease;
+}
+
+/* ===== NAVIGATION STYLES ===== */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    padding: 20px 0;
+}
+
+.logo {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: #C0FF00; /* تغيير اللون عند التحويم */
+    text-shadow: 0 0 10px rgba(192, 255, 0, 0.5); /* إضافة توهج خفيف */
+}
+
+nav ul li {
+    margin: 0 20px;
+    display: inline-block;
+}
+
+nav ul a {
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* تأثير التحويم على روابط القائمة */
+nav ul a:hover {
+    color: #C0FF00;
+}
+
+nav ul a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #C0FF00;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+nav ul a:hover::after {
+    width: 100%;
+}
+
+/* ===== CONTENT STYLES ===== */
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.content .text {
+    color: #fff;
+    width: 40%;
+    position: relative;
+    top: -12%;
+}
+
+.content .text h2 {
+    font-size: 29px;
+    text-transform: capitalize;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+span {
+    color: #C0FF00;
+    font-size: 36.5px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(192, 255, 0, 0.5);
+}
+
+h3 {
+    font-size: 23px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin: 10px 0;
+    color: #ddd;
+}
+
+.content .text p {
+    font-size: 18px;
+    line-height: 30px;
+    margin: 10px 0;
+    letter-spacing: 2px;
+    color: #ccc;
+}
+
+/* ===== IMAGE STYLES ===== */
+.content .image {
+    width: 40%;
+    position: relative;
+    top: -17%;
+    transition: all 0.5s ease;
+}
+
+.content .image img {
+    width: 370px;
+    height: auto;
+    border-radius: 30px;
+    transform: perspective(500px) rotate3d(1, 1, 0, 10deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 0 10px rgba(192, 255, 0, 0.3));
+}
+
+/* تأثير التحويم على الصورة */
+.content .image:hover img {
+    transform: perspective(500px) rotate3d(1, 1, 0, 15deg) scale(1.03);
+    filter: drop-shadow(0 0 15px rgba(192, 255, 0, 0.5));
+}
+
+/* ===== MEDIA QUERIES ===== */
+/* للأجهزة متوسطة الحجم (أقل من 1150px) */
+@media (max-width: 1150px) {
+    .content .image img {
+        width: 330px;
+    }
+}
+
+/* للأجهزة الصغيرة (أقل من 950px) */
+@media (max-width: 950px) {
+    .content, nav {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .content .text, .content .image {
+        width: 90%;
+        top: 0;
+        margin: 20px 0;
+    }
+    
+    .content .image img {
+        width: 280px;
+        margin: 0 auto;
+    }
+    
+    nav ul {
+        margin-top: 20px;
+    }
+    
+    nav ul li {
+        margin: 10px;
+        display: block;
+    }
+    
+    body::after {
+        clip-path: circle(30% at bottom center);
+    }
+}
+
+/* للهواتف الذكية (أقل من 600px) */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        height: 90%;
+    }
+    
+    .content .text h2 {
+        font-size: 24px;
+    }
+    
+    span {
+        font-size: 30px;
+    }
+    
+    h3 {
+        font-size: 18px;
+    }
+    
+    .content .text p {
+        font-size: 16px;
+    }
+    
+    .content .image img {
+        width: 220px;
+    }
+}
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== ELEMENT LOADING ANIMATION ===== */
+.animate-load {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Delay for each element */
+[data-delay="0.1s"] { animation-delay: 0.1s; }
+[data-delay="0.2s"] { animation-delay: 0.2s; }
+[data-delay="0.3s"] { animation-delay: 0.3s; }
+[data-delay="0.4s"] { animation-delay: 0.4s; }
+[data-delay="0.5s"] { animation-delay: 0.5s; }
+[data-delay="0.6s"] { animation-delay: 0.6s; }
+[data-delay="0.7s"] { animation-delay: 0.7s; }
+[data-delay="0.8s"] { animation-delay: 0.8s; }
+[data-delay="0.9s"] { animation-delay: 0.9s; }
+[data-delay="1.0s"] { 
+    animation: scaleIn 1s ease forwards;
+    animation-delay: 1.0s;
+}
